@@ -56,6 +56,3 @@ extra:
   recipe-maintainers:
     - xhochy
     - janjagusch
-  skip-lints:
-    - missing_doc_source_url
-    - missing_license_url

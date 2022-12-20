@@ -41,12 +41,21 @@ test:
     - pip
 
 about:
-  home: https://github.com/onnx/sklearn-onnx
+  home: https://onnx.ai/sklearn-onnx/
   summary: Convert scikit-learn models to ONNX
+  description: |
+    sklearn-onnx converts scikit-learn models to ONNX. Once in the ONNX format, you can use tools like `ONNX Runtime` for high performance scoring. All converters are tested with onnxruntime.
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
+  dev_url: https://github.com/onnx/sklearn-onnx
+  doc_url: https://onnx.ai/sklearn-onnx/api_summary.html
+
 
 extra:
   recipe-maintainers:
     - xhochy
     - janjagusch
+  skip-lints:
+    - missing_doc_source_url
+    - missing_license_url

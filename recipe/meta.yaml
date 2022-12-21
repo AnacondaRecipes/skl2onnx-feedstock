@@ -12,20 +12,22 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
     - numpy >=1.15
     - onnx >=1.2.1
     - onnxconverter-common >=1.7.0
     - protobuf 
-    - scikit-learn <=1.1.1
+    - scikit-learn >=0.19,<=1.1.1
     - scipy >=1.0
     - packaging
 
@@ -39,10 +41,16 @@ test:
     - pip
 
 about:
-  home: https://github.com/onnx/sklearn-onnx
+  home: https://onnx.ai/sklearn-onnx/
   summary: Convert scikit-learn models to ONNX
+  description: |
+    sklearn-onnx converts scikit-learn models to ONNX. Once in the ONNX format, you can use tools like `ONNX Runtime` for high performance scoring. All converters are tested with onnxruntime.
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
+  dev_url: https://github.com/onnx/sklearn-onnx
+  doc_url: https://onnx.ai/sklearn-onnx/api_summary.html
+
 
 extra:
   recipe-maintainers:

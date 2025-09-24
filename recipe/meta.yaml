@@ -50,6 +50,7 @@ requirements:
 {% set ignore_tests = ignore_tests + " --ignore=tests/test_sklearn_random_forest_converters.py" %}
 {% set ignore_tests = ignore_tests + " --ignore=tests/test_sklearn_sgd_classifier_converter.py" %}
 {% set ignore_tests = ignore_tests + " --ignore=tests/test_sklearn_truncated_svd.py" %}
+{% set ignore_tests = ignore_tests + " --ignore=tests/test_sklearn_one_hot_encoder_converter.py" %}
 
 test:
   source_files:

@@ -51,7 +51,6 @@ test:
     - pytest
     - onnxruntime
     - pandas
-    - scikit-learn
 
 about:
   home: https://onnx.ai/sklearn-onnx

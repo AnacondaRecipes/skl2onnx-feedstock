@@ -1,5 +1,7 @@
 {% set name = "skl2onnx" %}
-{% set version = "1.19.1" %}
+{% set version = "1.20.0" %}
+{% set deselect_tests = " --deselect=tests/test_algebra_onnx_doc.py::TestAlgebraOnnxDoc::test_doc_sklearn" %}
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_sklearn_one_hot_encoder_converter.py::TestSklearnOneHotEncoderConverter::test_shape_inference_onnx"' %}  # [linux and aarch64]
 
 package:
   name: {{ name|lower }}
@@ -7,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0c105f2a3b87a624dd218d1fb98fdd19cf1bf6217190d25ce7e15484127d0e5d
+  sha256: c74ea827d92ba186fe659695e8fc989cd97bfc320edce3d32b9936a5878da10a
 
 build:
   number: 0
@@ -18,7 +20,6 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools >=70
   run:
     - python
@@ -26,10 +27,7 @@ requirements:
     - scikit-learn >=1.1
 
 # Skiped documentation tests
-{% set deselect_tests = " --deselect=tests/test_algebra_onnx_doc.py::TestAlgebraOnnxDoc::test_doc_sklearn" %}
 # E   Arrays are not almost equal to 7 decimals
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_one_hot_encoder_converter.py::TestSklearnOneHotEncoderConverter::test_shape_inference_onnx" %}  # [linux and aarch64]
-
 test:
   source_files:
     - tests

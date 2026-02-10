@@ -1,7 +1,5 @@
 {% set name = "skl2onnx" %}
 {% set version = "1.20.0" %}
-{% set deselect_tests = " --deselect=tests/test_algebra_onnx_doc.py::TestAlgebraOnnxDoc::test_doc_sklearn" %}
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_sklearn_one_hot_encoder_converter.py::TestSklearnOneHotEncoderConverter::test_shape_inference_onnx"' %}  # [linux and aarch64]
 
 package:
   name: {{ name|lower }}
@@ -27,7 +25,8 @@ requirements:
     - scikit-learn >=1.1
 
 # Skiped documentation tests
-# E   Arrays are not almost equal to 7 decimals
+{% set deselect_tests = " --deselect=tests/test_algebra_onnx_doc.py::TestAlgebraOnnxDoc::test_doc_sklearn" %}
+
 test:
   source_files:
     - tests

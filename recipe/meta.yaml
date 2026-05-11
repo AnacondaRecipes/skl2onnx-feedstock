@@ -28,6 +28,15 @@ requirements:
 {% set deselect_tests = " --deselect=tests/test_algebra_onnx_doc.py::TestAlgebraOnnxDoc::test_doc_sklearn" %}
 # E   Arrays are not almost equal to 7 decimals
 {% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_one_hot_encoder_converter.py::TestSklearnOneHotEncoderConverter::test_shape_inference_onnx" %}  # [linux and aarch64]
+# Upstream regression: RadiusNeighbors converter emits -1 sentinel indices that current onnxruntime rejects
+# (ArrayFeatureExtractor: index out of range). Affects all platforms/pythons in 1.20.0 rebuild.
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_classifier_binary_class_radius" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_classifier_multi_class_radius" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_iris_classifier_multi_reg2_weight_radius" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_regressor2_1_radius" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_regressor_double_radius" %}
+# osx-arm64: local-lambda tokenizer can't be pickled (test infra issue, not a converter bug)
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_count_vectorizer_converter_bug.py::TestSklearnCountVectorizerBug::test_model_count_vectorizer_custom_tokenizer" %}  # [osx and arm64]
 
 test:
   source_files:

@@ -35,8 +35,8 @@ requirements:
 {% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_iris_classifier_multi_reg2_weight_radius" %}
 {% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_regressor2_1_radius" %}
 {% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_nearest_neighbour_converter.py::TestNearestNeighbourConverter::test_model_knn_regressor_double_radius" %}
-# osx-arm64: local-lambda tokenizer can't be pickled (test infra issue, not a converter bug)
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_count_vectorizer_converter_bug.py::TestSklearnCountVectorizerBug::test_model_count_vectorizer_custom_tokenizer" %}  # [osx and arm64]
+# py3.14: stricter lambda pickling rules break this test (local-lambda tokenizer); affects all platforms on 3.14
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_sklearn_count_vectorizer_converter_bug.py::TestSklearnCountVectorizerBug::test_model_count_vectorizer_custom_tokenizer" %}  # [py==314]
 
 test:
   source_files:
